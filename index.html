@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Get values from the form
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            // Show success message and user details
+            const details = `
+                <h2>Submitted Details:</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Age:</strong> ${age}</p>
+                <p><strong>Gender:</strong> ${gender}</p>
+                <p><strong>Email ID:</strong> ${email}</p>
+                <p><strong>Phone Number:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+            `;
+            document.getElementById('result').innerHTML = details;
+
+            // Reset the form
+            document.getElementById('registrationForm').reset();
+        }
+
+        function handleClear() {
+            // Clear the displayed details
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="submitBTN">Submit</button>
+                <button type="button" class="clearBTN" onclick="handleClear()">Clear</button> <!-- Call handleClear function -->
+            </div>
+        </form>
+        <div id="result" style="margin-top: 20px; color: rgb(0, 0, 0);"></div> <!-- Section for displaying results -->
+    </div>
+</body>
+</html>
